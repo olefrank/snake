@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Snake</title>
+    <link rel="stylesheet" href="reset.css"/>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div class="wrapper">
+    <canvas id="canvas"></canvas>
+    <div class="btn_wrapper">
+        <button id="btn_play">Play</button>
+        <button id="btn_stop">Stop</button>
+    </div>
+    <div class="score_wrapper">
+        <p id="fld_score">0</p>
+    </div>
+</div>
+
+<script src="model/Snake.js"></script>
+<script src="model/Direction.js"></script>
+<script src="model/Dot.js"></script>
+<script src="model/Food.js"></script>
+<script src="model/Piece.js"></script>
+
+<script src="view/GameView.js"></script>
+
+<script src="controller/GameController.js"></script>
+<script src="controller/GameControllerService.js"></script>
+<script src="controller/GameLoop.js"></script>
+<script src="controller/GameLoopService.js"></script>
+<script src="controller/IEventListener.js"></script>
+<script src="controller/KeyListener.js"></script>
+<script src="controller/BtnListener.js"></script>
+
+<script src="main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+== SNAKE ==
+===========
+
+1	<xxxxx	[6]
+
+2	xxxxx 	[5]
+	v 		[1]
+
+3	xxxx 	[4]
+	x 		[2]
+	v
+
+4	xxx 	[3]
+	x 		[2]
+	x> 		[1]
+
+5	xx 		[2]
+	x 		[2]
+	xx> 	[2]
+
+6	x 		[1]
+	x 		[2]
+	xxx> 	[3]
+
+7
+	x 		[2]
+	xxxx>	[5]
+
+8
+	xxxxx>	[6]
+
+
+
+1	<xxx        4
+
+2	xxx         3
+	v           1
+
+3	xx          2
+    x	        2
+    v
+
+4	x           1
+    x           3
+    x
+    v
+
+5
+    x           4
+    x
+    x
+    v
+
+
+Slange: 2 right, 4 down, 6 left, start (15,0)
+
+   					      0. ctx.beginPath();
+             xX 	1. ryk til slange start (15,0)
+             x 		2. beregn slutpunkt part1: start.x +/- part.length (left/right) eller start.y (up/down)
+             x 		3. tegn part 1 m lineTo
+             x 		4. beregn slutpunkt part 2
+       xxxxxxx 		5. tegn part 2 lineTo
+       				6. beregn slutpunkt part 3 => tegn part 3 med lineTo()
+       				7. stroke()
+
+       				clear canvas // ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+       				  0. beginPath();
+       		 xxX 	1. moveTo(16,0)
+       		 x 		2. 16-2, 0 = (14,0) -> lineTo(14,0)
+       		 x 		3. 14, 0+4 = (14,4) -> moveTo(14,4)
+       		 x 		4. 14-6, 4 = (8,4) -> lineTo(8,4)
+        xxxxxx 		5. stroke()
+
+        			// ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+
+
+
+BESKRIVELSE
+Slange:
+En slange består af et antal led som hver har en længde og en retning.
+
+Slangen kan kun bevæge sig ud fra den ene ende (hovedet).
+Slangen bevæger sig i et fast tempo.
+
+Slangen kan skifte retning:
+Når slangen skifter retning skabes et nyt led med denne retning
+Det nye led er 1 'x' lang. 
+Det foregående led bliver hele tiden 1 'x' mindre
+Det nye led vokser med 1 'x' indtil foregående led er tomt
+
+Når slangen bevæger sig:
+Det nyeste led vokser med 1 'x' for hvert 'tick'.
+Det bagerste led skrumper med 1 'x' for hvert 'tick'.
+Når et led har 0 'x' længde forsvinder det.
+
+IMPLEMENTERING DETALJER
+
+LINKS
+Kø i JS: http://stackoverflow.com/questions/1590247/how-do-you-implement-a-stack-and-a-queue-in-javascript
+TS Handbook: http://www.typescriptlang.org/Handbook#basic-types-number
+This i TS: https://github.com/Microsoft/TypeScript/wiki/'this'-in-TypeScript
+Game eksempel: https://gist.github.com/joeriks/6433714
+Collision detection: http://devmag.org.za/2009/04/13/basic-collision-detection-in-2d-part-1/
+JS Fiddle Snake eksempel: http://jsfiddle.net/RG76t/10/
+MVC arkitektur: http://chrissilich.com/blog/rolling-my-own-very-simple-mvc-patterned-javascript-canvas-game-without-an-mvc-framework/
