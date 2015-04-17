@@ -23,6 +23,7 @@ module controller {
         private _dotSize:number;
         private _foodSize:number;
         private _score:number;
+        private _defaultColor:string;
 
         get snake():model.Snake { return this._snake; }
 
@@ -42,11 +43,7 @@ module controller {
 
         get score():number { return this._score; }
 
-        get btnListener():controller.IEventListener { return this._btnListener; }
-
-
-
-
+        get defaultColor():string { return this._defaultColor; }
 
         constructor() {
             this.init();
@@ -61,6 +58,7 @@ module controller {
             this._dotSize = 8;
             this._foodSize = this._dotSize * 2;
             this._score = 0;
+            this._defaultColor = "black";
             this.createSnake();
             this.createFood();
         }

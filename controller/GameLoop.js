@@ -20,6 +20,7 @@ var controller;
                         else {
                             if (!_this.ctrl.snake.eating && controller.GameLoopService.collisionFood(_this.ctrl.snake, _this.ctrl.food)) {
                                 _this.ctrl.snake.eating = true;
+                                _this.ctrl.snake.getHead().setColor(_this.ctrl.food.getColor());
                             }
                             // eating
                             if (_this.ctrl.snake.eating) {

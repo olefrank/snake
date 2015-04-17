@@ -6,6 +6,7 @@ module model {
 
         getPosition():IPosObject
         getSize():number
+        getColor():string
 
     }
 

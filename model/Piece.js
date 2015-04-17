@@ -4,15 +4,23 @@
 var model;
 (function (model) {
     var Piece = (function () {
-        function Piece(position, size) {
+        function Piece(position, size, color) {
             this.position = position;
             this.size = size;
+            this.color = color;
         }
         Piece.prototype.getPosition = function () {
             return this.position;
         };
         Piece.prototype.getSize = function () {
             return this.size;
+        };
+        Piece.prototype.getColor = function () {
+            return this.color;
+        };
+        Piece.prototype.setColor = function (color) {
+            this.color = color;
+            ;
         };
         return Piece;
     })();

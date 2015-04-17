@@ -6,6 +6,7 @@
 var model;
 (function (model) {
     var Snake = (function () {
+        //        private _color:string;
         function Snake(pieces, direction, ctrl) {
             this._pieces = pieces;
             this._direction = direction;
@@ -13,10 +14,14 @@ var model;
             this.ctrl = ctrl;
             this._directionQ = [];
             this._directionQ.push(direction);
+            //            this._color = "black";
         }
         Object.defineProperty(Snake.prototype, "pieces", {
             get: function () {
                 return this._pieces;
+            },
+            set: function (val) {
+                this._pieces = val;
             },
             enumerable: true,
             configurable: true
@@ -44,6 +49,8 @@ var model;
             enumerable: true,
             configurable: true
         });
+        //        get color():string { return this._color; }
+        //        set color(val:string) { this._color = val; }
         Snake.prototype.getHead = function () {
             return this._pieces[this._pieces.length - 1];
         };
@@ -78,7 +85,7 @@ var model;
                     coord.x = this.limitCoord(coord.x, this.ctrl.canvasWidth);
                     break;
             }
-            return new model.Piece(coord, this.ctrl.dotSize);
+            return new model.Piece(coord, this.ctrl.dotSize, this.getHead().getColor());
         };
         Snake.prototype.limitCoord = function (coord, length) {
             return (coord % length + length) % length;

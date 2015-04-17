@@ -55,6 +55,7 @@ module controller {
                     else {
                         if ( !this.ctrl.snake.eating && controller.GameLoopService.collisionFood(this.ctrl.snake, this.ctrl.food) ) {
                             this.ctrl.snake.eating = true;
+                            this.ctrl.snake.getHead().setColor( this.ctrl.food.getColor() );
                         }
 
                         // eating

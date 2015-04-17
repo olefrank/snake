@@ -6,25 +6,25 @@ module model {
 
     export class Food implements IDot {
 
-        private position:IPosObject;
-        private size:number;
+        private _position:IPosObject;
+        private _size:number;
         private _color:string;
 
         constructor(position: IPosObject, size:number, color:string) {
-            this.position = position;
-            this.size = size;
+            this._position = position;
+            this._size = size;
             this._color = color;
         }
 
         getPosition():IPosObject {
-            return this.position;
+            return this._position;
         }
 
         getSize():number {
-            return this.size;
+            return this._size;
         }
 
-        get color():string {
+        getColor():string {
             return this._color;
         }
     }

@@ -13,6 +13,7 @@ module model {
         private _eating:boolean;
         private ctrl:controller.GameController;
         private _directionQ:Array<Direction>;
+//        private _color:string;
 
         constructor(pieces:Array<Piece>, direction:Direction, ctrl:controller.GameController) {
             this._pieces = pieces;
@@ -22,9 +23,11 @@ module model {
 
             this._directionQ = [];
             this._directionQ.push(direction);
+//            this._color = "black";
         }
 
         get pieces():Array<Piece> { return this._pieces; }
+        set pieces(val:Array<Piece>) { this._pieces = val; }
 
         get direction():Direction { return this._direction; }
 
@@ -38,6 +41,9 @@ module model {
 
         get eating():boolean { return this._eating; }
         set eating(val:boolean) { this._eating = val; }
+
+//        get color():string { return this._color; }
+//        set color(val:string) { this._color = val; }
 
         getHead():Piece { return this._pieces[this._pieces.length-1]; }
 
@@ -77,7 +83,7 @@ module model {
                     break;
             }
 
-            return new Piece(coord, this.ctrl.dotSize);
+            return new Piece(coord, this.ctrl.dotSize, this.getHead().getColor());
         }
 
         private limitCoord(coord:number, length:number):number {

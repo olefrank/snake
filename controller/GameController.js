@@ -75,9 +75,9 @@ var controller;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(GameController.prototype, "btnListener", {
+        Object.defineProperty(GameController.prototype, "defaultColor", {
             get: function () {
-                return this._btnListener;
+                return this._defaultColor;
             },
             enumerable: true,
             configurable: true
@@ -90,6 +90,7 @@ var controller;
             this._dotSize = 8;
             this._foodSize = this._dotSize * 2;
             this._score = 0;
+            this._defaultColor = "black";
             this.createSnake();
             this.createFood();
         };

@@ -16,11 +16,13 @@ var view;
             this.scoreFld = document.getElementById("fld_score");
         }
         GameView.prototype.drawDot = function (dot) {
+            this.ctx.fillStyle = dot.getColor();
             this.ctx.fillRect(dot.getPosition().x, dot.getPosition().y, dot.getSize(), dot.getSize());
+            this.ctx.fillStyle = "black";
         };
         GameView.prototype.drawFood = function (food) {
             // use custom color for food
-            this.ctx.fillStyle = food.color;
+            this.ctx.fillStyle = food.getColor();
             this.drawDot(food);
             // switch back to default color
             this.ctx.fillStyle = "black";

@@ -5,23 +5,19 @@ var model;
 (function (model) {
     var Food = (function () {
         function Food(position, size, color) {
-            this.position = position;
-            this.size = size;
+            this._position = position;
+            this._size = size;
             this._color = color;
         }
         Food.prototype.getPosition = function () {
-            return this.position;
+            return this._position;
         };
         Food.prototype.getSize = function () {
-            return this.size;
+            return this._size;
         };
-        Object.defineProperty(Food.prototype, "color", {
-            get: function () {
-                return this._color;
-            },
-            enumerable: true,
-            configurable: true
-        });
+        Food.prototype.getColor = function () {
+            return this._color;
+        };
         return Food;
     })();
     model.Food = Food;

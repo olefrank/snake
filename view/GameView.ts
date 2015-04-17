@@ -24,12 +24,14 @@ module view {
         }
 
         drawDot(dot:model.IDot):void {
+            this.ctx.fillStyle = dot.getColor();
             this.ctx.fillRect(dot.getPosition().x, dot.getPosition().y, dot.getSize(), dot.getSize());
+            this.ctx.fillStyle = "black";
         }
 
         drawFood(food:model.Food):void {
             // use custom color for food
-            this.ctx.fillStyle = food.color;
+            this.ctx.fillStyle = food.getColor();
             this.drawDot(food);
 
             // switch back to default color

@@ -29,7 +29,7 @@ module controller {
                 xInc = i * ctrl.dotSize;
                 pPos = {x: position.x + xInc, y:position.y};
 
-                piece = new model.Piece(pPos, ctrl.dotSize);
+                piece = new model.Piece(pPos, ctrl.dotSize, ctrl.defaultColor);
                 pieces.push(piece);
             }
             return new model.Snake(pieces, direction, ctrl);
