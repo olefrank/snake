@@ -14,7 +14,7 @@ var controller;
                     if (_this.ctrl.snake) {
                         // game over
                         if (controller.GameLoopService.collisionSnake(_this.ctrl.snake)) {
-                            alert("Game over!");
+                            _this.ctrl.gameover();
                             _this.stop();
                         }
                         else {

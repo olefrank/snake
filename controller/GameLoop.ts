@@ -49,7 +49,7 @@ module controller {
 
                     // game over
                     if ( controller.GameLoopService.collisionSnake(this.ctrl.snake) ) {
-                        alert("Game over!");
+                        this.ctrl.gameover();
                         this.stop();
                     }
                     else {

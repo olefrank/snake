@@ -26,13 +26,6 @@ var controller;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(GameController.prototype, "loopSpeed", {
-            get: function () {
-                return this._loopSpeed;
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(GameController.prototype, "numFoodToEat", {
             get: function () {
                 return this._numFoodToEat;
@@ -82,6 +75,13 @@ var controller;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(GameController.prototype, "btnListener", {
+            get: function () {
+                return this._btnListener;
+            },
+            enumerable: true,
+            configurable: true
+        });
         GameController.prototype.init = function () {
             this._canvasWidth = 400;
             this._canvasHeight = 400;
@@ -100,11 +100,6 @@ var controller;
             this._gameLoop = new controller.GameLoop(this);
         };
         GameController.prototype.startGame = function () {
-            // pause
-            if (this._gameLoop.requestID) {
-            }
-            else {
-            }
             this._gameLoop.start();
         };
         GameController.prototype.stopGame = function () {
@@ -119,6 +114,15 @@ var controller;
         GameController.prototype.updateScore = function () {
             this._score += 100;
             this.gameView.updateScore();
+        };
+        GameController.prototype.gameover = function () {
+            this.gameView.showRetryBtn(true);
+        };
+        GameController.prototype.restartGame = function () {
+            this.gameView.showRetryBtn(false);
+            this.init();
+            this.gameView.updateScore();
+            this._gameLoop.start();
         };
         return GameController;
     })();

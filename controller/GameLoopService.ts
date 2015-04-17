@@ -25,7 +25,7 @@ module controller {
             return result;
         }
 
-        static collisionFood(snake:model.Snake, food:model.Food) {
+        static collisionFood(snake:model.Snake, food:model.IDot) {
             var head:model.Piece = snake.getHead();
 
             return !(food.getPosition().x > (head.getPosition().x + head.getSize()-1) ||

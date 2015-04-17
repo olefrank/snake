@@ -18,8 +18,8 @@ module controller {
         private _gameLoop:controller.GameLoop;
         private _loopSpeed:number;
         private _numFoodToEat:number;
-        private _keyListener:controller.KeyListener;
-        private _btnListener:controller.BtnListener;
+        private _keyListener:controller.IEventListener;
+        private _btnListener:controller.IEventListener;
         private _dotSize:number;
         private _foodSize:number;
         private _score:number;
@@ -27,8 +27,6 @@ module controller {
         get snake():model.Snake { return this._snake; }
 
         get food():model.Food {return this._food; }
-
-        get loopSpeed():number { return this._loopSpeed; }
 
         get numFoodToEat():number { return this._numFoodToEat; }
 
@@ -43,6 +41,10 @@ module controller {
         get canvasHeight():number { return this._canvasHeight; }
 
         get score():number { return this._score; }
+
+        get btnListener():controller.IEventListener { return this._btnListener; }
+
+
 
 
 
@@ -71,14 +73,6 @@ module controller {
         }
 
         startGame():void {
-            // pause
-            if (this._gameLoop.requestID) {
-
-            }
-            // start
-            else {
-
-            }
             this._gameLoop.start();
         }
 
@@ -97,6 +91,17 @@ module controller {
         updateScore():void {
             this._score += 100;
             this.gameView.updateScore();
+        }
+
+        gameover():void {
+            this.gameView.showRetryBtn(true);
+        }
+
+        restartGame():void {
+            this.gameView.showRetryBtn(false);
+            this.init();
+            this.gameView.updateScore();
+            this._gameLoop.start();
         }
 
     }

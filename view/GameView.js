@@ -41,6 +41,23 @@ var view;
         GameView.prototype.updateScore = function () {
             this.scoreFld.innerText = this.ctrl.score.toString();
         };
+        GameView.prototype.showRetryBtn = function (value) {
+            var btn_replay = document.getElementById("btn_replay");
+            var btn_play = document.getElementById("btn_play");
+            var btn_stop = document.getElementById("btn_stop");
+            switch (value) {
+                case true:
+                    btn_replay.className = "showBtn";
+                    btn_play.disabled = true;
+                    btn_stop.disabled = true;
+                    break;
+                case false:
+                    btn_replay.className = "hideBtn";
+                    btn_play.disabled = false;
+                    btn_stop.disabled = false;
+                    break;
+            }
+        };
         return GameView;
     })();
     view.GameView = GameView;

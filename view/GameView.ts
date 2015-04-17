@@ -23,7 +23,7 @@ module view {
             this.scoreFld = document.getElementById("fld_score");
         }
 
-        drawDot(dot:model.Dot):void {
+        drawDot(dot:model.IDot):void {
             this.ctx.fillRect(dot.getPosition().x, dot.getPosition().y, dot.getSize(), dot.getSize());
         }
 
@@ -55,6 +55,28 @@ module view {
 
         updateScore():void {
             this.scoreFld.innerText = this.ctrl.score.toString();
+        }
+
+        showRetryBtn(value:boolean):void {
+            var btn_replay:HTMLButtonElement = <HTMLButtonElement> document.getElementById("btn_replay");
+            var btn_play:HTMLButtonElement = <HTMLButtonElement> document.getElementById("btn_play");
+            var btn_stop:HTMLButtonElement = <HTMLButtonElement> document.getElementById("btn_stop");
+
+            switch (value) {
+                case true:
+                    btn_replay.className = "showBtn";
+                    btn_play.disabled = true;
+                    btn_stop.disabled = true;
+
+
+                    break;
+                case false:
+                    btn_replay.className = "hideBtn";
+                    btn_play.disabled = false;
+                    btn_stop.disabled = false;
+                    break;
+            }
+
         }
     }
 

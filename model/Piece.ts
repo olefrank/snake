@@ -4,7 +4,7 @@
 
 module model {
 
-    export class Piece implements Dot {
+    export class Piece implements IDot {
 
         private position:IPosObject;
         private size:number;

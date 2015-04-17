@@ -29,13 +29,19 @@ module controller {
 
         handleEvt(e) {
             if (e) {
+
                 switch (e.target.id) {
+
                     case "btn_play":
                         this.ctrl.startGame();
                         break;
 
                     case "btn_stop":
                         this.ctrl.stopGame();
+                        break;
+
+                    case "btn_replay":
+                        this.ctrl.restartGame();
                         break;
                 }
             }

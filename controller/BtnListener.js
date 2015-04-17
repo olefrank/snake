@@ -29,6 +29,9 @@ var controller;
                     case "btn_stop":
                         this.ctrl.stopGame();
                         break;
+                    case "btn_replay":
+                        this.ctrl.restartGame();
+                        break;
                 }
             }
         };

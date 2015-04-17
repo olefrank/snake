@@ -2,7 +2,7 @@
 
 module model {
 
-    export interface Dot {
+    export interface IDot {
 
         getPosition():IPosObject
         getSize():number

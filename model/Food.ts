@@ -4,7 +4,7 @@
 
 module model {
 
-    export class Food implements Dot {
+    export class Food implements IDot {
 
         private position:IPosObject;
         private size:number;
