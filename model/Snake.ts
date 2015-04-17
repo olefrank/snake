@@ -12,18 +12,29 @@ module model {
         private _direction:Direction;
         private _eating:boolean;
         private ctrl:controller.GameController;
+        private _directionQ:Array<Direction>;
 
         constructor(pieces:Array<Piece>, direction:Direction, ctrl:controller.GameController) {
             this._pieces = pieces;
             this._direction = direction;
             this._eating = false;
             this.ctrl = ctrl;
+
+            this._directionQ = [];
+            this._directionQ.push(direction);
         }
 
         get pieces():Array<Piece> { return this._pieces; }
 
         get direction():Direction { return this._direction; }
-        set direction(direction:Direction) { this._direction = direction; }
+
+        queueDirection(direction:Direction):void {
+            this._directionQ.push(direction);
+        }
+
+        private shiftDirection():Direction {
+            return this._directionQ.shift();
+        }
 
         get eating():boolean { return this._eating; }
         set eating(val:boolean) { this._eating = val; }
@@ -31,9 +42,7 @@ module model {
         getHead():Piece { return this._pieces[this._pieces.length-1]; }
 
         move():void {
-            // create new head
             this.grow();
-            // remove old tail
             this._pieces.splice(0,1);
         }
 
@@ -41,8 +50,13 @@ module model {
             this._pieces.push( this.createNewPiece() );
         }
 
-        createNewPiece() {
+        private createNewPiece() {
             var coord = Object.create(this.getHead().getPosition());
+
+            // get next direction from queue
+            if (this._directionQ.length > 0) {
+                this._direction = this.shiftDirection();
+            }
 
             switch(this._direction) {
                 case Direction.Up:
@@ -66,7 +80,7 @@ module model {
             return new Piece(coord, this.ctrl.dotSize);
         }
 
-        limitCoord(coord:number, length:number):number {
+        private limitCoord(coord:number, length:number):number {
             return ( coord % length + length) % length;
         }
 

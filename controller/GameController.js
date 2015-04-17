@@ -54,6 +54,13 @@ var controller;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(GameController.prototype, "foodSize", {
+            get: function () {
+                return this._foodSize;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(GameController.prototype, "canvasWidth", {
             get: function () {
                 return this._canvasWidth;
@@ -81,6 +88,7 @@ var controller;
             this._loopSpeed = 80;
             this._numFoodToEat = 5;
             this._dotSize = 8;
+            this._foodSize = 16;
             this._score = 0;
         };
         GameController.prototype.create = function () {
@@ -105,6 +113,7 @@ var controller;
         };
         GameController.prototype.updateScore = function () {
             this._score += 100;
+            this.gameView.updateScore();
         };
         return GameController;
     })();

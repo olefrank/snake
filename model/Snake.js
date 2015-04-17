@@ -11,6 +11,8 @@ var model;
             this._direction = direction;
             this._eating = false;
             this.ctrl = ctrl;
+            this._directionQ = [];
+            this._directionQ.push(direction);
         }
         Object.defineProperty(Snake.prototype, "pieces", {
             get: function () {
@@ -23,12 +25,15 @@ var model;
             get: function () {
                 return this._direction;
             },
-            set: function (direction) {
-                this._direction = direction;
-            },
             enumerable: true,
             configurable: true
         });
+        Snake.prototype.queueDirection = function (direction) {
+            this._directionQ.push(direction);
+        };
+        Snake.prototype.shiftDirection = function () {
+            return this._directionQ.shift();
+        };
         Object.defineProperty(Snake.prototype, "eating", {
             get: function () {
                 return this._eating;
@@ -43,9 +48,7 @@ var model;
             return this._pieces[this._pieces.length - 1];
         };
         Snake.prototype.move = function () {
-            // create new head
             this.grow();
-            // remove old tail
             this._pieces.splice(0, 1);
         };
         Snake.prototype.grow = function () {
@@ -53,6 +56,10 @@ var model;
         };
         Snake.prototype.createNewPiece = function () {
             var coord = Object.create(this.getHead().getPosition());
+            // get next direction from queue
+            if (this._directionQ.length > 0) {
+                this._direction = this.shiftDirection();
+            }
             switch (this._direction) {
                 case 0 /* Up */:
                     coord.y -= this.ctrl.dotSize;

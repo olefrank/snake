@@ -21,10 +21,8 @@ var controller;
             return result;
         };
         GameLoopService.collisionFood = function (snake, food) {
-            var r1 = snake.getHead();
-            var r2 = food;
-            var rSize = food.getSize() / 2;
-            return !(r2.getPosition().x > (r1.getPosition().x + rSize) || (r2.getPosition().x + rSize) < r1.getPosition().x || r2.getPosition().y > (r1.getPosition().y + rSize) || (r2.getPosition().y + rSize) < r1.getPosition().y);
+            var head = snake.getHead();
+            return !(food.getPosition().x > (head.getPosition().x + head.getSize() - 1) || (food.getPosition().x + food.getSize() - 1) < head.getPosition().x || food.getPosition().y > (head.getPosition().y + head.getSize() - 1) || (food.getPosition().y + food.getSize() - 1) < head.getPosition().y);
         };
         return GameLoopService;
     })();

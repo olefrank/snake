@@ -37,9 +37,7 @@ module controller {
                     this.stop();
                 }
                 else {
-                    if ( controller.GameLoopService.collisionFood(this.ctrl.snake, this.ctrl.food) ) {
-                        this.ctrl.updateScore();
-                        this.ctrl.gameView.updateScore();
+                    if ( !this.ctrl.snake.eating && controller.GameLoopService.collisionFood(this.ctrl.snake, this.ctrl.food) ) {
                         this.ctrl.snake.eating = true;
                     }
 
@@ -48,24 +46,22 @@ module controller {
                         this.ctrl.snake.grow();
                         this.ctrl.gameView.drawSnake();
                         this.foodEaten++;
+
+                        // reset food & update score
+                        if (this.foodEaten === this.ctrl.numFoodToEat) {
+                            this.ctrl.updateScore();
+                            this.ctrl.snake.eating = false;
+                            this.foodEaten = 0;
+                            this.ctrl.createFood();
+                        }
                     }
                     else {
                         this.ctrl.snake.move();
                         this.ctrl.gameView.drawSnake();
                         this.ctrl.gameView.drawFood(this.ctrl.food);
                     }
-
-                    // reset food
-                    if (this.foodEaten === this.ctrl.numFoodToEat) {
-                        this.ctrl.snake.eating = false;
-                        this.foodEaten = 0;
-                        this.ctrl.createFood();
-                    }
                 }
-
             }
         }
-
     }
-
 }

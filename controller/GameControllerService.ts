@@ -36,10 +36,10 @@ module controller {
         }
 
         static createFood(ctrl:GameController):model.Food {
-            var x:number = this.getRandomDiv(0, ctrl.canvasWidth - ctrl.dotSize, ctrl.dotSize);
-            var y:number = this.getRandomDiv(0, ctrl.canvasHeight - ctrl.dotSize, ctrl.dotSize);
+            var x:number = this.getRandomDiv(0, ctrl.canvasWidth - ctrl.foodSize, ctrl.foodSize);
+            var y:number = this.getRandomDiv(0, ctrl.canvasWidth - ctrl.foodSize, ctrl.foodSize);
             var color:string = this.getRandomColor();
-            var food:model.Food = new model.Food({x: x, y: y}, ctrl.dotSize, color);
+            var food:model.Food = new model.Food({x: x, y: y}, ctrl.foodSize, color);
 
             return food;
         }

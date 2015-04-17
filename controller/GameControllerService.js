@@ -29,10 +29,10 @@ var controller;
             return new model.Snake(pieces, direction, ctrl);
         };
         GameControllerService.createFood = function (ctrl) {
-            var x = this.getRandomDiv(0, ctrl.canvasWidth - ctrl.dotSize, ctrl.dotSize);
-            var y = this.getRandomDiv(0, ctrl.canvasHeight - ctrl.dotSize, ctrl.dotSize);
+            var x = this.getRandomDiv(0, ctrl.canvasWidth - ctrl.foodSize, ctrl.foodSize);
+            var y = this.getRandomDiv(0, ctrl.canvasWidth - ctrl.foodSize, ctrl.foodSize);
             var color = this.getRandomColor();
-            var food = new model.Food({ x: x, y: y }, ctrl.dotSize, color);
+            var food = new model.Food({ x: x, y: y }, ctrl.foodSize, color);
             return food;
         };
         /**

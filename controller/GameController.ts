@@ -21,6 +21,7 @@ module controller {
         private _keyListener:controller.KeyListener;
         private _btnListener:controller.BtnListener;
         private _dotSize:number;
+        private _foodSize:number;
         private _score:number;
 
         get snake():model.Snake { return this._snake; }
@@ -34,6 +35,8 @@ module controller {
         get gameView():view.GameView { return this._gameView; }
 
         get dotSize():number { return this._dotSize; }
+
+        get foodSize():number { return this._foodSize; }
 
         get canvasWidth():number { return this._canvasWidth; }
 
@@ -54,6 +57,7 @@ module controller {
             this._loopSpeed = 80;
             this._numFoodToEat = 5;
             this._dotSize = 8;
+            this._foodSize = 16;
             this._score = 0;
         }
 
@@ -84,6 +88,7 @@ module controller {
 
         updateScore():void {
             this._score += 100;
+            this.gameView.updateScore();
         }
 
     }
