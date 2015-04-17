@@ -6,13 +6,11 @@ module controller {
 
     export class KeyListener implements IEventListener {
 
-        private snake:model.Snake;
-        private loopSpeed:number;
         private lastMoved:number;
+        private ctrl:GameController;
 
-        constructor(snake:model.Snake, loopSpeed:number) {
-            this.snake = snake;
-            this.loopSpeed = loopSpeed;
+        constructor(ctrl:GameController) {
+            this.ctrl = ctrl;
             this.lastMoved = 0;
             this.enable();
         }
@@ -28,7 +26,7 @@ module controller {
         }
 
         handleEvt(e) {
-            var direction:model.Direction = this.snake.direction;
+            var direction:model.Direction = this.ctrl.snake.direction;
 
             if (e) {
                 switch (e.which) {
@@ -62,7 +60,7 @@ module controller {
                         break;
                 }
 
-                this.snake.queueDirection(direction);
+                this.ctrl.snake.queueDirection(direction);
             }
         }
 

@@ -25,7 +25,7 @@ module controller {
         private _score:number;
 
         get snake():model.Snake { return this._snake; }
-        
+
         get food():model.Food {return this._food; }
 
         get loopSpeed():number { return this._loopSpeed; }
@@ -57,20 +57,28 @@ module controller {
             this._loopSpeed = 80;
             this._numFoodToEat = 5;
             this._dotSize = 8;
-            this._foodSize = 16;
+            this._foodSize = this._dotSize * 2;
             this._score = 0;
+            this.createSnake();
+            this.createFood();
         }
 
         create():void {
-            this.createSnake();
-            this.createFood();
-            this._keyListener = new KeyListener(this._snake, this.loopSpeed);
+            this._keyListener = new KeyListener(this);
             this._btnListener = new BtnListener(this);
             this._gameView = new view.GameView(this);
             this._gameLoop = new controller.GameLoop(this);
         }
 
         startGame():void {
+            // pause
+            if (this._gameLoop.requestID) {
+
+            }
+            // start
+            else {
+
+            }
             this._gameLoop.start();
         }
 

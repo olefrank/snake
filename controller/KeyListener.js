@@ -4,9 +4,8 @@
 var controller;
 (function (controller) {
     var KeyListener = (function () {
-        function KeyListener(snake, loopSpeed) {
-            this.snake = snake;
-            this.loopSpeed = loopSpeed;
+        function KeyListener(ctrl) {
+            this.ctrl = ctrl;
             this.lastMoved = 0;
             this.enable();
         }
@@ -20,7 +19,7 @@ var controller;
             document.removeEventListener("keydown", this.handleEvt);
         };
         KeyListener.prototype.handleEvt = function (e) {
-            var direction = this.snake.direction;
+            var direction = this.ctrl.snake.direction;
             if (e) {
                 switch (e.which) {
                     case 37:
@@ -48,7 +47,7 @@ var controller;
                         }
                         break;
                 }
-                this.snake.queueDirection(direction);
+                this.ctrl.snake.queueDirection(direction);
             }
         };
         return KeyListener;

@@ -105,3 +105,5 @@ Game eksempel: https://gist.github.com/joeriks/6433714
 Collision detection: http://devmag.org.za/2009/04/13/basic-collision-detection-in-2d-part-1/
 JS Fiddle Snake eksempel: http://jsfiddle.net/RG76t/10/
 MVC arkitektur: http://chrissilich.com/blog/rolling-my-own-very-simple-mvc-patterned-javascript-canvas-game-without-an-mvc-framework/
+RequestAnimationFrame with polyfill: http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+Controlling requestAnimationFrame speed: http://codetheory.in/controlling-the-frame-rate-with-requestanimationframe/

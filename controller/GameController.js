@@ -88,18 +88,23 @@ var controller;
             this._loopSpeed = 80;
             this._numFoodToEat = 5;
             this._dotSize = 8;
-            this._foodSize = 16;
+            this._foodSize = this._dotSize * 2;
             this._score = 0;
-        };
-        GameController.prototype.create = function () {
             this.createSnake();
             this.createFood();
-            this._keyListener = new controller.KeyListener(this._snake, this.loopSpeed);
+        };
+        GameController.prototype.create = function () {
+            this._keyListener = new controller.KeyListener(this);
             this._btnListener = new controller.BtnListener(this);
             this._gameView = new view.GameView(this);
             this._gameLoop = new controller.GameLoop(this);
         };
         GameController.prototype.startGame = function () {
+            // pause
+            if (this._gameLoop.requestID) {
+            }
+            else {
+            }
             this._gameLoop.start();
         };
         GameController.prototype.stopGame = function () {
