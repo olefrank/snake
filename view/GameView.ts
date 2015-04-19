@@ -1,6 +1,6 @@
 /// <reference path="../model/Snake.ts" />
 /// <reference path="../model/Direction.ts" />
-/// <reference path="../model/Piece.ts" />
+/// <reference path="../model/Dot.ts" />
 /// <reference path="../controller/GameController.ts" />
 /// <reference path="../model/IPosObject.ts" />
 /// <reference path="../controller/KeyListener.ts" />
@@ -23,13 +23,13 @@ module view {
             this.scoreFld = document.getElementById("fld_score");
         }
 
-        drawDot(dot:model.IDot):void {
+        drawDot(dot:model.Dot):void {
             this.ctx.fillStyle = dot.getColor();
             this.ctx.fillRect(dot.getPosition().x, dot.getPosition().y, dot.getSize(), dot.getSize());
             this.ctx.fillStyle = "black";
         }
 
-        drawFood(food:model.Food):void {
+        drawFood(food:model.Dot):void {
             // use custom color for food
             this.ctx.fillStyle = food.getColor();
             this.drawDot(food);
@@ -40,7 +40,7 @@ module view {
 
         drawSnake():void {
             // get snake length
-            var piece:model.Piece;
+            var piece:model.Dot;
             var i:number = 0;
             var numPieces:number = this.ctrl.snake.pieces.length;
 

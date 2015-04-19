@@ -1,6 +1,6 @@
 /// <reference path="../model/Snake.ts" />
 /// <reference path="../model/Direction.ts" />
-/// <reference path="../model/Piece.ts" />
+/// <reference path="../model/Dot.ts" />
 /// <reference path="../controller/GameController.ts" />
 /// <reference path="../model/IPosObject.ts" />
 /// <reference path="../controller/KeyListener.ts" />

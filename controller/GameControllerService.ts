@@ -19,29 +19,64 @@ module controller {
 
             var numPieces:number = 10;
 
-            var piece:model.Piece;
+            var piece:model.Dot;
             var pPos:model.IPosObject;
             var xInc:number;
-            var pieces:Array<model.Piece> = [];
+            var pieces:Array<model.Dot> = [];
 
             // create pieces
             for (var i = 0; i < numPieces; i++) {
                 xInc = i * ctrl.dotSize;
                 pPos = {x: position.x + xInc, y:position.y};
 
-                piece = new model.Piece(pPos, ctrl.dotSize, ctrl.defaultColor);
+                piece = new model.Dot(pPos, ctrl.dotSize, ctrl.defaultColor);
                 pieces.push(piece);
             }
             return new model.Snake(pieces, direction, ctrl);
         }
 
-        static createFood(ctrl:GameController):model.Food {
+        static createFood(ctrl:GameController):model.Dot {
             var x:number = this.getRandomDiv(0, ctrl.canvasWidth - ctrl.foodSize, ctrl.foodSize);
             var y:number = this.getRandomDiv(0, ctrl.canvasWidth - ctrl.foodSize, ctrl.foodSize);
             var color:string = this.getRandomColor();
-            var food:model.Food = new model.Food({x: x, y: y}, ctrl.foodSize, color);
+            var food:model.Dot = new model.Dot({x: x, y: y}, ctrl.foodSize, color);
 
             return food;
+        }
+
+        static createPiece(head:model.Dot, canvasWidth:number, canvasHeight:number, direction:model.Direction, dotSize:number):model.Dot {
+            var coord = Object.create(head.getPosition());
+
+            switch(direction) {
+                case model.Direction.Up:
+                    coord.y -= dotSize;
+                    coord.y = this.limitCoord(coord.y, canvasHeight);
+                    break;
+                case model.Direction.Down:
+                    coord.y += dotSize;
+                    coord.y = this.limitCoord(coord.y, canvasHeight);
+                    break;
+                case model.Direction.Left:
+                    coord.x -= dotSize;
+                    coord.x = this.limitCoord(coord.x, canvasWidth);
+                    break;
+                case model.Direction.Right:
+                    coord.x += dotSize;
+                    coord.x = this.limitCoord(coord.x, canvasWidth);
+                    break;
+            }
+
+            return new model.Dot(coord, dotSize, head.getColor());
+        }
+
+        /**
+         * Limit coordinate to be inside given boundary
+         * @param coord x or y coord
+         * @param length boundary
+         * @returns {number}
+         */
+        private static limitCoord(coord:number, length:number):number {
+            return ( coord % length + length) % length;
         }
 
         /**

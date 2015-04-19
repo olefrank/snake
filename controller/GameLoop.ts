@@ -58,7 +58,6 @@ module controller {
                             this.ctrl.snake.getHead().setColor( this.ctrl.food.getColor() );
                         }
 
-                        // eating
                         if (this.ctrl.snake.eating) {
                             this.ctrl.snake.grow();
                             this.ctrl.gameView.drawSnake();

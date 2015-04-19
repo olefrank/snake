@@ -1,6 +1,6 @@
 /// <reference path="../view/GameView.ts" />
 /// <reference path="../model/Snake.ts" />
-/// <reference path="../model/Food.ts" />
+/// <reference path="../model/Dot.ts" />
 /// <reference path="GameLoop.ts" />
 /// <reference path="KeyListener.ts" />
 /// <reference path="BtnListener.ts" />
@@ -14,7 +14,7 @@ module controller {
         private _canvasHeight:number;
         private _gameView:view.GameView;
         private _snake:model.Snake;
-        private _food:model.Food;
+        private _food:model.Dot;
         private _gameLoop:controller.GameLoop;
         private _loopSpeed:number;
         private _numFoodToEat:number;
@@ -27,7 +27,7 @@ module controller {
 
         get snake():model.Snake { return this._snake; }
 
-        get food():model.Food {return this._food; }
+        get food():model.Dot {return this._food; }
 
         get numFoodToEat():number { return this._numFoodToEat; }
 
@@ -84,6 +84,10 @@ module controller {
 
         createFood():void {
             this._food = controller.GameControllerService.createFood(this);
+        }
+
+        createDot():model.Dot {
+            return controller.GameControllerService.createPiece(this.snake.getHead(), this.canvasWidth, this.canvasHeight, this.snake.getNextDirection(), this.dotSize);
         }
 
         updateScore():void {

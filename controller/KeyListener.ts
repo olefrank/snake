@@ -34,33 +34,31 @@ module controller {
                     case 37:
                         e.preventDefault();
                         if (direction !== model.Direction.Left && direction !== model.Direction.Right) {
-                            direction = model.Direction.Left;
+                            this.ctrl.snake.queueDirection(model.Direction.Left);;
                         }
                         break;
                     // up
                     case 38:
                         e.preventDefault();
                         if (direction !== model.Direction.Up && direction !== model.Direction.Down) {
-                            direction = model.Direction.Up;
+                            this.ctrl.snake.queueDirection(model.Direction.Up);;
                         }
                         break;
                     // right
                     case 39:
                         e.preventDefault();
                         if (direction !== model.Direction.Right && direction !== model.Direction.Left) {
-                            direction = model.Direction.Right;
+                            this.ctrl.snake.queueDirection(model.Direction.Right);;
                         }
                         break;
                     // down
                     case 40:
                         e.preventDefault();
                         if (direction !== model.Direction.Down && direction !== model.Direction.Up) {
-                            direction = model.Direction.Down;
+                            this.ctrl.snake.queueDirection(model.Direction.Down);;
                         }
                         break;
                 }
-
-                this.ctrl.snake.queueDirection(direction);
             }
         }
 

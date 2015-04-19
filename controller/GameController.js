@@ -1,6 +1,6 @@
 /// <reference path="../view/GameView.ts" />
 /// <reference path="../model/Snake.ts" />
-/// <reference path="../model/Food.ts" />
+/// <reference path="../model/Dot.ts" />
 /// <reference path="GameLoop.ts" />
 /// <reference path="KeyListener.ts" />
 /// <reference path="BtnListener.ts" />
@@ -111,6 +111,9 @@ var controller;
         };
         GameController.prototype.createFood = function () {
             this._food = controller.GameControllerService.createFood(this);
+        };
+        GameController.prototype.createDot = function () {
+            return controller.GameControllerService.createPiece(this.snake.getHead(), this.canvasWidth, this.canvasHeight, this.snake.getNextDirection(), this.dotSize);
         };
         GameController.prototype.updateScore = function () {
             this._score += 100;

@@ -22,7 +22,6 @@ var controller;
                                 _this.ctrl.snake.eating = true;
                                 _this.ctrl.snake.getHead().setColor(_this.ctrl.food.getColor());
                             }
-                            // eating
                             if (_this.ctrl.snake.eating) {
                                 _this.ctrl.snake.grow();
                                 _this.ctrl.gameView.drawSnake();

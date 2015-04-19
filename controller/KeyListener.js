@@ -24,30 +24,33 @@ var controller;
                 switch (e.which) {
                     case 37:
                         e.preventDefault();
-                        if (direction !== 2 /* Left */ && direction !== 3 /* Right */) {
-                            direction = 2 /* Left */;
+                        if (direction !== 3 /* Left */ && direction !== 1 /* Right */) {
+                            this.ctrl.snake.queueDirection(3 /* Left */);
+                            ;
                         }
                         break;
                     case 38:
                         e.preventDefault();
-                        if (direction !== 0 /* Up */ && direction !== 1 /* Down */) {
-                            direction = 0 /* Up */;
+                        if (direction !== 0 /* Up */ && direction !== 2 /* Down */) {
+                            this.ctrl.snake.queueDirection(0 /* Up */);
+                            ;
                         }
                         break;
                     case 39:
                         e.preventDefault();
-                        if (direction !== 3 /* Right */ && direction !== 2 /* Left */) {
-                            direction = 3 /* Right */;
+                        if (direction !== 1 /* Right */ && direction !== 3 /* Left */) {
+                            this.ctrl.snake.queueDirection(1 /* Right */);
+                            ;
                         }
                         break;
                     case 40:
                         e.preventDefault();
-                        if (direction !== 1 /* Down */ && direction !== 0 /* Up */) {
-                            direction = 1 /* Down */;
+                        if (direction !== 2 /* Down */ && direction !== 0 /* Up */) {
+                            this.ctrl.snake.queueDirection(2 /* Down */);
+                            ;
                         }
                         break;
                 }
-                this.ctrl.snake.queueDirection(direction);
             }
         };
         return KeyListener;

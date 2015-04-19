@@ -1,27 +1,31 @@
-/// <reference path="Piece.ts" />
+/// <reference path="Dot.ts" />
 /// <reference path="Direction.ts" />
 /// <reference path="IPosObject.ts" />
-/// <reference path="Food.ts" />
+/// <reference path="Dot.ts" />
 /// <reference path="../controller/GameController.ts" />
 var model;
 (function (model) {
     var Snake = (function () {
-        //        private _color:string;
         function Snake(pieces, direction, ctrl) {
             this._pieces = pieces;
-            this._direction = direction;
             this._eating = false;
             this.ctrl = ctrl;
             this._directionQ = [];
             this._directionQ.push(direction);
-            //            this._color = "black";
         }
         Object.defineProperty(Snake.prototype, "pieces", {
             get: function () {
                 return this._pieces;
             },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Snake.prototype, "eating", {
+            get: function () {
+                return this._eating;
+            },
             set: function (val) {
-                this._pieces = val;
+                this._eating = val;
             },
             enumerable: true,
             configurable: true
@@ -34,61 +38,24 @@ var model;
             configurable: true
         });
         Snake.prototype.queueDirection = function (direction) {
+            console.log("direction to queue: " + direction);
             this._directionQ.push(direction);
         };
-        Snake.prototype.shiftDirection = function () {
-            return this._directionQ.shift();
+        Snake.prototype.getNextDirection = function () {
+            if (this._directionQ.length > 0) {
+                this._direction = this._directionQ.shift();
+            }
+            return this._direction;
         };
-        Object.defineProperty(Snake.prototype, "eating", {
-            get: function () {
-                return this._eating;
-            },
-            set: function (val) {
-                this._eating = val;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        //        get color():string { return this._color; }
-        //        set color(val:string) { this._color = val; }
         Snake.prototype.getHead = function () {
             return this._pieces[this._pieces.length - 1];
         };
         Snake.prototype.move = function () {
             this.grow();
-            this._pieces.splice(0, 1);
+            this._pieces.shift();
         };
         Snake.prototype.grow = function () {
-            this._pieces.push(this.createNewPiece());
-        };
-        Snake.prototype.createNewPiece = function () {
-            var coord = Object.create(this.getHead().getPosition());
-            // get next direction from queue
-            if (this._directionQ.length > 0) {
-                this._direction = this.shiftDirection();
-            }
-            switch (this._direction) {
-                case 0 /* Up */:
-                    coord.y -= this.ctrl.dotSize;
-                    coord.y = this.limitCoord(coord.y, this.ctrl.canvasHeight);
-                    break;
-                case 1 /* Down */:
-                    coord.y += this.ctrl.dotSize;
-                    coord.y = this.limitCoord(coord.y, this.ctrl.canvasHeight);
-                    break;
-                case 2 /* Left */:
-                    coord.x -= this.ctrl.dotSize;
-                    coord.x = this.limitCoord(coord.x, this.ctrl.canvasWidth);
-                    break;
-                case 3 /* Right */:
-                    coord.x += this.ctrl.dotSize;
-                    coord.x = this.limitCoord(coord.x, this.ctrl.canvasWidth);
-                    break;
-            }
-            return new model.Piece(coord, this.ctrl.dotSize, this.getHead().getColor());
-        };
-        Snake.prototype.limitCoord = function (coord, length) {
-            return (coord % length + length) % length;
+            this._pieces.push(this.ctrl.createDot());
         };
         return Snake;
     })();
