@@ -1,2 +1,13 @@
+node_modules
+build
+test
+src/**/*.js
+src/**/*.js.map
 .idea
-*.iml
+.vscode
+
+coverage
+.nyc_output
+*.log
+
+package-lock.json

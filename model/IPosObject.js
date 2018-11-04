@@ -1,1 +1,0 @@
-//# sourceMappingURL=IPosObject.js.map

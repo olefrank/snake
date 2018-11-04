@@ -1,4 +1,8 @@
-# snake
-Classic Snake game made with TypeScript
+# snake2
 
-![Classic Snake game](/../screenshots/snake-screen-2.png?raw=true "Screen shot of game")
+Second version of the classic Snake game, updated to latest version of TypeScript
+
+To run the game:
+
+1. Only first time `yarn build`
+2. Start the game `yarn start`
